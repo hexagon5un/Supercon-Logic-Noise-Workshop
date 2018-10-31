@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section><section id="logic-noise" class="titleslide slide level1"><h1>Logic Noise</h1></section><section id="logic-noise-1" class="slide level2">
+<h2>Logic Noise</h2>
+<p><strong>Hacking Music out of Digital Chaos</strong></p>
+<p>Elliot Williams</p>
+<p>Hackaday</p>
+</section><section id="todays-menu" class="slide level2">
+<h2>Today's Menu</h2>
+<ul>
+<li class="fragment"><p>4000-series CMOS Logic ICs</p></li>
+<li class="fragment"><p>Some Analog</p></li>
+<li class="fragment"><p>Demos Galore and some Circuit Diagrams</p></li>
+<li class="fragment"><p>(Musical Philosophy)</p></li>
+</ul>
+</section><section id="what-is-music" class="slide level2">
+<h2>What is Music?</h2>
+<ul>
+<li class="fragment"><p>Bunch of notes...</p></li>
+<li class="fragment"><p>that you expect.</p></li>
+<li class="fragment"><p>But not too obvious either</p></li>
+<li class="fragment"><p>Rhythm and repetition but also variety</p></li>
+</ul>
+</section></section>
+<section><section id="tone-pitch-and-dynamics" class="titleslide slide level1"><h1>Tone, Pitch, and Dynamics</h1></section><section id="oscillator-40106" class="slide level2">
+<h2>Oscillator: 40106</h2>
+<ul>
+<li class="fragment">It all starts with <a href="https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/">an oscillator</a></li>
+</ul>
+<figure>
+<img src="images/40106_just_osc1.png" height="350" />
+</figure>
+<ul>
+<li class="fragment">Capacitor and resistor determine the pitch</li>
+</ul>
+</section><section id="timbre" class="slide level2">
+<h2>Timbre</h2>
+<p><a href="https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/">Diode Sync</a></p>
+<figure>
+<img src="images/diode_montage.png" height="450" />
+</figure>
+</section><section id="more-timbre" class="slide level2">
+<h2>More Timbre</h2>
+<ul>
+<li class="fragment"><a href="https://hackaday.com/2015/03/09/logic-noise-sawing-away-with-analog-waveforms/">Analog tricks with 4069UB</a>: <br> triangle and sawtooth waveforms</li>
+</ul>
+<figure>
+<img src="images/triangle_square.png" height="250" />
+</figure>
+<ul>
+<li class="fragment">4070 <a href="https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/">XOR</a> Cowbell / Cymbals</li>
+</ul>
+</section><section id="pitch-analog" class="slide level2">
+<h2>Pitch: Analog</h2>
+<ul>
+<li class="fragment"><p>Change resistance or capacitance</p></li>
+<li class="fragment"><p><a href="https://hackaday.com/2015/02/23/logic-noise-the-switching-sequencer/">4051 Multiplexer</a> switchable resistances</p></li>
+<li class="fragment"><p><a href="http://electro-music.com/forum/viewtopic.php?highlight=synthmonger+vco&amp;t=28799">Change the charging current</a></p></li>
+</ul>
+</section><section id="pitch-digital" class="slide level2">
+<h2>Pitch: Digital</h2>
+<ul>
+<li class="fragment"><p>Octaves, divide by 2:<br> <a href="https://hackaday.com/2015/02/17/logic-noise-8-bits-of-glorious-sounds/">Binary counters</a></p></li>
+<li class="fragment"><p>Divide by N:<br> 4017 decade counter w/ reset</p></li>
+<li class="fragment"><p>4051 mux again:<br> 8 oscillators enter, only one leaves</p></li>
+</ul>
+</section><section id="dynamics-digital" class="slide level2">
+<h2>Dynamics: Digital</h2>
+<ul>
+<li class="fragment"><p>Stall oscillator with diode</p></li>
+<li class="fragment"><p>Power on and off</p></li>
+<li class="fragment"><p><a href="https://hackaday.com/2015/07/02/logic-noise-ping-pong-stereo-mixers-and-more/">4066 quad switch</a></p>
+<p>-- On output</p>
+<p>-- On power rail with capacitor(!)</p></li>
+</ul>
+</section><section id="dynamics-analog" class="slide level2">
+<h2>Dynamics: Analog</h2>
+<ul>
+<li class="fragment"><p>Power on and off (plus capacitor for decay)</p></li>
+<li class="fragment"><p><a href="https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/">Two-diode VCA</a> (needs buffer, sorry)</p></li>
+</ul>
+<figure>
+<img src="images/diode_vca-sch2.png" height="250" />
+</figure>
+<ul>
+<li class="fragment">4007 VCA</li>
+</ul>
+</section></section>
+<section><section id="rhythm" class="titleslide slide level1"><h1>Rhythm</h1></section><section id="booomm-tss-4040-binary-counter" class="slide level2">
+<h2>Booomm-Tss: 4040 Binary counter</h2>
+<ul>
+<li class="fragment"><p>Pitch turns into tempo around 15 Hz</p></li>
+<li class="fragment"><p>Whole note, half note, quarter note, eighth note...</p></li>
+<li class="fragment"><p>Four on the floor</p></li>
+</ul>
+</section><section id="fixing-the-4040" class="slide level2">
+<h2>Fixing the 4040</h2>
+<figure>
+<img src="images/4040_waveform.png" height="250" />
+</figure>
+<ul>
+<li class="fragment"><p>Invert outputs you care about</p></li>
+<li class="fragment"><p>But keep the non-inverted too: backbeats</p></li>
+</ul>
+</section><section id="rhythmic-shortcuts-4089" class="slide level2">
+<h2>Rhythmic Shortcuts: 4089</h2>
+<figure>
+<img src="images/4089_patterns.png" height="350" />
+</figure>
+<ul>
+<li class="fragment">4089 &quot;rate multiplier&quot; chip is beats in a box</li>
+</ul>
+</section><section id="one-pulse-per-step-the-mighty-4017" class="slide level2">
+<h2>One Pulse per Step: The Mighty 4017</h2>
+<ul>
+<li class="fragment">Puts out one of up to ten outputs per clock</li>
+</ul>
+<figure>
+<img src="images/4017_pattern.png" height="350" />
+</figure>
+<ul>
+<li class="fragment">Use pulses to trigger oddly-timed events</li>
+</ul>
+</section><section id="it-dont-mean-a-thing..." class="slide level2">
+<h2>It don't mean a thing...</h2>
+<ul>
+<li class="fragment"><a href="http://www.electro-music.com/forum/post-361142.html">if it ain't got that swing</a> (clock)</li>
+</ul>
+<figure>
+<img src="images/swing_counter.png" height="350" />
+</figure>
+<ul>
+<li class="fragment">4017 + 4040 = regular, off-grid time</li>
+</ul>
+</section></section>
+<section><section id="all-together" class="titleslide slide level1"><h1>All Together</h1></section><section id="melody-generator" class="slide level2">
+<h2>Melody Generator ++</h2>
+<ul>
+<li class="fragment"><p><a href="http://electro-music.com/forum/topic-27239-50.html">Melody generator</a></p></li>
+<li class="fragment"><p>4017 makes pitches by division</p></li>
+<li class="fragment"><p>One of eight outputs to reset through 4051 mux</p></li>
+<li class="fragment"><p>Three digital lines into 4051 pick &quot;note&quot;</p></li>
+<li class="fragment"><p>My twist: add some octaves with a 4040,<br> drive with SR</p></li>
+</ul>
+</section><section id="melody-generator-1" class="slide level2">
+<h2>Melody Generator ++</h2>
+<figure>
+<img src="images/melody_generator_plus_plussch_779.png" height="350" />
+</figure>
+</section><section id="melody-generator-2" class="slide level2">
+<h2>Melody Generator ++</h2>
+<ul>
+<li class="fragment"><p>Control pitch / octave through<br> paired clock and data lines</p></li>
+<li class="fragment"><p>Inject sequence into SR, loop it</p></li>
+<li class="fragment"><p>Feed clock / data with detuned oscillators</p></li>
+<li class="fragment"><p>Tweak until &quot;just right&quot;</p></li>
+</ul>
+</section><section id="whats-next" class="slide level2">
+<h2>What's Next?</h2>
+<ul>
+<li class="fragment"><p>Tremendous room for playing around</p></li>
+<li class="fragment"><p>Incorporate microcontroller, FPGA</p></li>
+<li class="fragment"><p>Build standalone instruments</p></li>
+<li class="fragment"><p>Priority encoders, complex logic</p></li>
+<li class="fragment"><p>Turn away from &quot;music&quot;, <br>embrace noise.</p></li>
+</ul>
+</section></section>
+<section><section id="the-end" class="titleslide slide level1"><h1>The End</h1></section><section id="fittingly-offbeat-references" class="slide level2">
+<h2>Fittingly Offbeat References</h2>
+<ul>
+<li class="fragment"><p><a href="http://moosack.net/stang/sculpts.html">Stanley Lunetta</a></p></li>
+<li class="fragment"><p><a href="https://davidtudor.org/Electronics/electronics.html">David Tudor</a></p></li>
+<li class="fragment"><p><a href="http://www.petervogel-objekte.de/ObjKlang.html">Peter Vogel</a></p></li>
+<li class="fragment"><p><a href="http://www.nicolascollins.com/read.htm">Nicolas Collins</a></p></li>
+<li class="fragment"><p><a href="http://www.electro-music.com/forum/forum-160.html">Electro-Music &quot;Lunetta&quot; Forum</a></p></li>
+<li class="fragment"><p><a href="https://hackaday.com/tag/logic-noise/">Logic Noise</a> on Hackaday</p></li>
+<li class="fragment"><p>Don Lancaster's <em>CMOS Cookbook</em></p></li>
+</ul>
+</section><section id="contact" class="slide level2">
+<h2>Contact</h2>
+<p>elliot.williams@hackaday.com</p>
+<p>https://hackaday.com/author/hexagon5un/</p>
+</section></section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+              { src: 'reveal.js/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>
