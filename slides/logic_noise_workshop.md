@@ -1,171 +1,232 @@
+# Logic Noise Workshop
 
-# Logic Noise 
+## Welcome! 
 
-## Logic Noise
-
-**Hacking Music out of Digital Chaos**
-
-Elliot Williams
-
-Hackaday
+![](images/logic-noise.jpg){}
 
 ## Today's Menu
 
-- 4000-series CMOS Logic ICs
-
+- 4000-series CMOS digital logic ICs
 - Some Analog
+- Breadboard Heroics
+- Noise
+- As much as time allows, maybe more...
 
-- Demos Galore and some Circuit Diagrams
+# Orientation
 
-- (Musical Philosophy)
 
-## What is Music?
+## The Kit
 
-- Bunch of notes...
+- Breadboard, battery, buttons, capacitors, 
+  <br>resistors, pots, wires, speaker
+- Chips!
 
-- that you expect.
 
-- But not too obvious either
+## The Flow, The Chips
 
-- Rhythm and repetition but also variety
+- Output: 4069UB inverter as amplifier into speaker
+- Oscillator: 40106 inverter as oscillator
+- Clock Division: 4040 binary counter
+- Pitches: 4017 decade counter 
+- Switches: 4051 8-way multiplexer
+- Looper: 4094 shift register 
 
 
-# Tone, Pitch, and Dynamics
+## 4000-Series Logic Layout
 
-## Oscillator: 40106
 
-- It all starts with [an oscillator](https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/)
+- Handout
+- VCC / GND
+- Inverters have common layout
+- Other chips?  Read the datasheet.
+- Golden Rules for Use:
+	- Ground unused inputs
+	- 0.1 uF decoupling capacitors
 
-![](images/40106_just_osc1.png){height=350px}
 
-- Capacitor and resistor determine the pitch
+# Output Amp
 
-## Timbre
+## Easy Warm Up
 
-[Diode Sync](https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/) 
- 
-![](images/diode_montage.png){height=450px}
+- Grab the footprints handout
+- Connect up the power: <br>VCC, GND to the breadboard's power rails
+- Pin 7 (Output of Inverter C) to capacitor
+- Capacitor to one leg of speaker
+- Other leg of speaker to ground
+- NEEDS DIAGRAM
 
-## More Timbre
 
+## Test it out
 
-- [Analog tricks with 4069UB](https://hackaday.com/2015/03/09/logic-noise-sawing-away-with-analog-waveforms/): <br>
-   triangle and sawtooth waveforms
+- Input of inverter C (pin 6) <br>alternately to VCC and GND
+- Hear pops?  Woot.
 
-![](images/triangle_square.png){height=250px}
+# My First Oscillator
 
-- 4070 [XOR](https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/) Cowbell / Cymbals
+## 40106 Inverter
 
-## Pitch: Analog
+- A lot like the 4069, but...
+- ... with hysteresis
+- Separate high and low thresholds create deadband
 
-- Change resistance or capacitance
+## Relaxation Oscillator
 
-- [4051 Multiplexer](https://hackaday.com/2015/02/23/logic-noise-the-switching-sequencer/) switchable resistances
+![](images/40106_just_osc1.png){height=500px}
 
-- [Change the charging current](http://electro-music.com/forum/viewtopic.php?highlight=synthmonger+vco&t=28799)
+## 40106 Action
 
-## Pitch: Digital
+- The hysteresis keeps the oscillator oscillating
+- Imagine the capacitor starts out uncharged
+- With input low, output goes high 
+- Charges capacitor up through resistor
+- When cap voltage hits high, output goes low
+- Low output drains cap through resistor...
 
-- Octaves, divide by 2:<br> [Binary counters](https://hackaday.com/2015/02/17/logic-noise-8-bits-of-glorious-sounds/)
+## Voltages
 
-- Divide by N:<br> 4017 decade counter w/ reset
+![](images/triangle_square.png){height=500px}
 
-- 4051 mux again:<br> 8 oscillators enter, only one leaves
+## Hook it up
 
-## Dynamics: Digital
+- Power rails
+- Capacitor on input to ground
+- Potentiometer between input/output
+- Output to the amplifier 
 
-- Stall oscillator with diode
+![](images/40106_just_osc1.png){height=200px}
 
-- Power on and off 
+## The Diode Trick
 
-- [4066 quad switch](https://hackaday.com/2015/07/02/logic-noise-ping-pong-stereo-mixers-and-more/)
+- OK, that gets old fast
+- How to trigger this thing?  
+- Brutal approach: plug and unplug the power
+- Put a pushbutton inline with the amplifier
+- More Useful: stall out the oscillator with a diode
 
-	-- On output
+## Sync Oscillators
 
-	-- On power rail with capacitor(!)
+- Build up another oscillator real quick 
+- Higher frequency: 0.01 uF (103) cap
+- Connect output of the first into its input via diode
+- Move amplifier input to the higher-pitch oscillator
 
-## Dynamics: Analog
+## Sync Oscillator
 
-- Power on and off (plus capacitor for decay)
- 
-- [Two-diode VCA](https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/) (needs buffer, sorry)
+![](images/40106_sync_osc.png){height=500px}
 
-![](images/diode_vca-sch2.png){height=250px}
+## Sync Oscillator
 
-- 4007 VCA 
+![](images/diode_montage.png){height=500px}
 
 
-# Rhythm
+# From Pitches to Beats
 
-## Booomm-Tss: 4040 Binary counter
+## 4040 Binary Counter
 
-- Pitch turns into tempo around 15 Hz
+![](images/4040_diagram.png){height=400px}
 
-- Whole note, half note, quarter note, eighth note... 
+## 4040 Binary Counter
 
-- Four on the floor
+![](images/4040_waveform.png){height=400px}
 
+## Hookup
 
-## Fixing the 4040
+- Power up!
+- Take the sync oscillator output, connect to 4040 clock
+- Hook up random outputs of the 4040 to amplifier
+- Play "find the octaves"
+- (Why couldn't they put the outputs in order?)
 
-![](images/4040_waveform.png){height=250px}
+## Variation 
 
-- Invert outputs you care about
+- The slow divisions are very slow
+- Use one or two like the sync oscillator
 
-- But keep the non-inverted too: backbeats
+## Distraction 
 
+- Stacking and mixing octaves sounds great
+- Check out the Logic Noise article on the 4040 
 
-## Rhythmic Shortcuts: 4089
+# Digital Pitches
 
-![](images/4089_patterns.png){height=350px}
+## Divide-by-N
 
-- 4089 "rate multiplier" chip is beats in a box
+- Dividing by 2 gives us octaves
+- Other notes?
+- Divide by other factors
 
-## One Pulse per Step: The Mighty 4017
+## 4017 Counter
 
-- Puts out one of up to ten outputs per clock
+![](images/4017_pattern.png){height=400px}
 
-![](images/4017_pattern.png){height=350px}
+## Hookup
 
-- Use pulses to trigger oddly-timed events
+- Power (yawn)
+- High-pitch oscillator into 4017 clock
+- Inhibit line high
+- Amplifier to Q0
+- Different outputs Q1-Q9 to reset line
 
-## It don't mean a thing...
+# Analog Switches
 
-- [if it ain't got that swing](http://www.electro-music.com/forum/post-361142.html) (clock)
+## 4051 Multiplexer
 
-![](images/swing_counter.png){height=350px}
+- 4051 is an 8-way switch
+- Binary input on A, B, C 
+- Connects X0-X7 to Common
+- Bipolar: VEE can be negative, VSS is logic GND
+- Not hi-fi, but can switch 8 audio sources
 
-- 4017 + 4040 = regular, off-grid time
+## Simplest Hookup
 
-# All Together
+- VCC to power
+- Inhibit, VEE, and VSS all to GND
+- A, B to GND
+- C directs input between common and X0, X1
 
-## Melody Generator ++
+## Our Goal: Melody Generator
 
-- [Melody generator](http://electro-music.com/forum/topic-27239-50.html)
+- High freq oscillator back to 4017 counter for pitches
+- Select among reset pulses through 4051
+- But need to count to 8
+- Low-freq oscillator into 4040
+- 4040 outputs into 4017's A,B,C
 
-- 4017 makes pitches by division
+## The Melody Generator
 
-- One of eight outputs to reset through 4051 mux
+![](images/melody_gen_schem.png){height=500px}
 
-- Three digital lines into 4051 pick "note"
 
-- My twist: add some octaves with a 4040,<br> drive with SR
+# Extra Credit: Looper
 
-## Melody Generator ++
+## Shift Register
 
-![](images/melody_generator_plus_plussch_779.png){height=350px}
+- Bucket Brigade / Hot Potato
 
+- Inputs: Data, Clock, Strobe, Enable
 
-## Melody Generator ++
+- Outputs: Q1-Q8, "Qs" overflow
 
-- Control pitch / octave through<br> paired clock and data lines
+- Close on itself, loops around
 
-- Inject sequence into SR, loop it
+## 4094 Block Diagram
 
-- Feed clock / data with detuned oscillators
+![](images/4094_block_diagram.png){height=500px}
 
-- Tweak until "just right"
 
+
+## Loop It!
+
+
+
+
+
+
+
+
+
+
+# Wrapup
 
 ## What's Next?
 
@@ -173,16 +234,12 @@ Hackaday
 
 - Incorporate microcontroller, FPGA
 
+- Hack this into the badge
+
 - Build standalone instruments
 
-- Priority encoders, complex logic
 
-- Turn away from "music", <br>embrace noise.
-
-
-# The End
-
-## Fittingly Offbeat References
+## References
 
 - [Stanley Lunetta](http://moosack.net/stang/sculpts.html)
 
@@ -197,7 +254,6 @@ Hackaday
 - [Logic Noise](https://hackaday.com/tag/logic-noise/) on Hackaday
 
 - Don Lancaster's _CMOS Cookbook_
-
 
 ## Contact
 

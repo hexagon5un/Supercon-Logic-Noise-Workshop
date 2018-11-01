@@ -4,7 +4,7 @@ THEME=moon
 
 %.html: %.md
 	# pandoc -t revealjs -V theme:${THEME} -s $^ -o $@
-	pandoc -t revealjs  -i -s $^ -o $@
+	pandoc -t revealjs -i -s $^ -o $@
 #	pandoc -t dzslides  -s $^ -o $@
 
 

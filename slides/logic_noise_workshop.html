@@ -27,173 +27,247 @@
     <div class="slides">
 
 
-<section><section id="logic-noise" class="titleslide slide level1"><h1>Logic Noise</h1></section><section id="logic-noise-1" class="slide level2">
-<h2>Logic Noise</h2>
-<p><strong>Hacking Music out of Digital Chaos</strong></p>
-<p>Elliot Williams</p>
-<p>Hackaday</p>
+<section><section id="logic-noise-workshop" class="titleslide slide level1"><h1>Logic Noise Workshop</h1></section><section id="welcome" class="slide level2">
+<h2>Welcome!</h2>
+<figure>
+<img src="images/logic-noise.jpg" />
+</figure>
 </section><section id="todays-menu" class="slide level2">
 <h2>Today's Menu</h2>
 <ul>
-<li class="fragment"><p>4000-series CMOS Logic ICs</p></li>
-<li class="fragment"><p>Some Analog</p></li>
-<li class="fragment"><p>Demos Galore and some Circuit Diagrams</p></li>
-<li class="fragment"><p>(Musical Philosophy)</p></li>
-</ul>
-</section><section id="what-is-music" class="slide level2">
-<h2>What is Music?</h2>
-<ul>
-<li class="fragment"><p>Bunch of notes...</p></li>
-<li class="fragment"><p>that you expect.</p></li>
-<li class="fragment"><p>But not too obvious either</p></li>
-<li class="fragment"><p>Rhythm and repetition but also variety</p></li>
+<li class="fragment">4000-series CMOS digital logic ICs</li>
+<li class="fragment">Some Analog</li>
+<li class="fragment">Breadboard Heroics</li>
+<li class="fragment">Noise</li>
+<li class="fragment">As much as time allows, maybe more...</li>
 </ul>
 </section></section>
-<section><section id="tone-pitch-and-dynamics" class="titleslide slide level1"><h1>Tone, Pitch, and Dynamics</h1></section><section id="oscillator-40106" class="slide level2">
-<h2>Oscillator: 40106</h2>
+<section><section id="orientation" class="titleslide slide level1"><h1>Orientation</h1></section><section id="the-kit" class="slide level2">
+<h2>The Kit</h2>
 <ul>
-<li class="fragment">It all starts with <a href="https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/">an oscillator</a></li>
+<li class="fragment">Breadboard, battery, buttons, capacitors, <br>resistors, pots, wires, speaker</li>
+<li class="fragment">Chips!</li>
 </ul>
-<figure>
-<img src="images/40106_just_osc1.png" height="350" />
-</figure>
+</section><section id="the-flow-the-chips" class="slide level2">
+<h2>The Flow, The Chips</h2>
 <ul>
-<li class="fragment">Capacitor and resistor determine the pitch</li>
+<li class="fragment">Output: 4069UB inverter as amplifier into speaker</li>
+<li class="fragment">Oscillator: 40106 inverter as oscillator</li>
+<li class="fragment">Clock Division: 4040 binary counter</li>
+<li class="fragment">Pitches: 4017 decade counter</li>
+<li class="fragment">Switches: 4051 8-way multiplexer</li>
+<li class="fragment">Looper: 4094 shift register</li>
 </ul>
-</section><section id="timbre" class="slide level2">
-<h2>Timbre</h2>
-<p><a href="https://hackaday.com/2015/02/04/logic-noise-sweet-sweet-oscillator-sounds/">Diode Sync</a></p>
-<figure>
-<img src="images/diode_montage.png" height="450" />
-</figure>
-</section><section id="more-timbre" class="slide level2">
-<h2>More Timbre</h2>
+</section><section id="series-logic-layout" class="slide level2">
+<h2>4000-Series Logic Layout</h2>
 <ul>
-<li class="fragment"><a href="https://hackaday.com/2015/03/09/logic-noise-sawing-away-with-analog-waveforms/">Analog tricks with 4069UB</a>: <br> triangle and sawtooth waveforms</li>
-</ul>
-<figure>
-<img src="images/triangle_square.png" height="250" />
-</figure>
+<li class="fragment">Handout</li>
+<li class="fragment">VCC / GND</li>
+<li class="fragment">Inverters have common layout</li>
+<li class="fragment">Other chips? Read the datasheet.</li>
+<li class="fragment">Golden Rules for Use:
 <ul>
-<li class="fragment">4070 <a href="https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/">XOR</a> Cowbell / Cymbals</li>
-</ul>
-</section><section id="pitch-analog" class="slide level2">
-<h2>Pitch: Analog</h2>
-<ul>
-<li class="fragment"><p>Change resistance or capacitance</p></li>
-<li class="fragment"><p><a href="https://hackaday.com/2015/02/23/logic-noise-the-switching-sequencer/">4051 Multiplexer</a> switchable resistances</p></li>
-<li class="fragment"><p><a href="http://electro-music.com/forum/viewtopic.php?highlight=synthmonger+vco&amp;t=28799">Change the charging current</a></p></li>
-</ul>
-</section><section id="pitch-digital" class="slide level2">
-<h2>Pitch: Digital</h2>
-<ul>
-<li class="fragment"><p>Octaves, divide by 2:<br> <a href="https://hackaday.com/2015/02/17/logic-noise-8-bits-of-glorious-sounds/">Binary counters</a></p></li>
-<li class="fragment"><p>Divide by N:<br> 4017 decade counter w/ reset</p></li>
-<li class="fragment"><p>4051 mux again:<br> 8 oscillators enter, only one leaves</p></li>
-</ul>
-</section><section id="dynamics-digital" class="slide level2">
-<h2>Dynamics: Digital</h2>
-<ul>
-<li class="fragment"><p>Stall oscillator with diode</p></li>
-<li class="fragment"><p>Power on and off</p></li>
-<li class="fragment"><p><a href="https://hackaday.com/2015/07/02/logic-noise-ping-pong-stereo-mixers-and-more/">4066 quad switch</a></p>
-<p>-- On output</p>
-<p>-- On power rail with capacitor(!)</p></li>
-</ul>
-</section><section id="dynamics-analog" class="slide level2">
-<h2>Dynamics: Analog</h2>
-<ul>
-<li class="fragment"><p>Power on and off (plus capacitor for decay)</p></li>
-<li class="fragment"><p><a href="https://hackaday.com/2015/04/10/logic-noise-more-cmos-cowbell/">Two-diode VCA</a> (needs buffer, sorry)</p></li>
-</ul>
-<figure>
-<img src="images/diode_vca-sch2.png" height="250" />
-</figure>
-<ul>
-<li class="fragment">4007 VCA</li>
+<li class="fragment">Ground unused inputs</li>
+<li class="fragment">0.1 uF decoupling capacitors</li>
+</ul></li>
 </ul>
 </section></section>
-<section><section id="rhythm" class="titleslide slide level1"><h1>Rhythm</h1></section><section id="booomm-tss-4040-binary-counter" class="slide level2">
-<h2>Booomm-Tss: 4040 Binary counter</h2>
+<section><section id="output-amp" class="titleslide slide level1"><h1>Output Amp</h1></section><section id="easy-warm-up" class="slide level2">
+<h2>Easy Warm Up</h2>
 <ul>
-<li class="fragment"><p>Pitch turns into tempo around 15 Hz</p></li>
-<li class="fragment"><p>Whole note, half note, quarter note, eighth note...</p></li>
-<li class="fragment"><p>Four on the floor</p></li>
+<li class="fragment">Grab the footprints handout</li>
+<li class="fragment">Connect up the power: <br>VCC, GND to the breadboard's power rails</li>
+<li class="fragment">Pin 7 (Output of Inverter C) to capacitor</li>
+<li class="fragment">Capacitor to one leg of speaker</li>
+<li class="fragment">Other leg of speaker to ground</li>
+<li class="fragment">NEEDS DIAGRAM</li>
 </ul>
-</section><section id="fixing-the-4040" class="slide level2">
-<h2>Fixing the 4040</h2>
-<figure>
-<img src="images/4040_waveform.png" height="250" />
-</figure>
+</section><section id="test-it-out" class="slide level2">
+<h2>Test it out</h2>
 <ul>
-<li class="fragment"><p>Invert outputs you care about</p></li>
-<li class="fragment"><p>But keep the non-inverted too: backbeats</p></li>
-</ul>
-</section><section id="rhythmic-shortcuts-4089" class="slide level2">
-<h2>Rhythmic Shortcuts: 4089</h2>
-<figure>
-<img src="images/4089_patterns.png" height="350" />
-</figure>
-<ul>
-<li class="fragment">4089 &quot;rate multiplier&quot; chip is beats in a box</li>
-</ul>
-</section><section id="one-pulse-per-step-the-mighty-4017" class="slide level2">
-<h2>One Pulse per Step: The Mighty 4017</h2>
-<ul>
-<li class="fragment">Puts out one of up to ten outputs per clock</li>
-</ul>
-<figure>
-<img src="images/4017_pattern.png" height="350" />
-</figure>
-<ul>
-<li class="fragment">Use pulses to trigger oddly-timed events</li>
-</ul>
-</section><section id="it-dont-mean-a-thing..." class="slide level2">
-<h2>It don't mean a thing...</h2>
-<ul>
-<li class="fragment"><a href="http://www.electro-music.com/forum/post-361142.html">if it ain't got that swing</a> (clock)</li>
-</ul>
-<figure>
-<img src="images/swing_counter.png" height="350" />
-</figure>
-<ul>
-<li class="fragment">4017 + 4040 = regular, off-grid time</li>
+<li class="fragment">Input of inverter C (pin 6) <br>alternately to VCC and GND</li>
+<li class="fragment">Hear pops? Woot.</li>
 </ul>
 </section></section>
-<section><section id="all-together" class="titleslide slide level1"><h1>All Together</h1></section><section id="melody-generator" class="slide level2">
-<h2>Melody Generator ++</h2>
+<section><section id="my-first-oscillator" class="titleslide slide level1"><h1>My First Oscillator</h1></section><section id="inverter" class="slide level2">
+<h2>40106 Inverter</h2>
 <ul>
-<li class="fragment"><p><a href="http://electro-music.com/forum/topic-27239-50.html">Melody generator</a></p></li>
-<li class="fragment"><p>4017 makes pitches by division</p></li>
-<li class="fragment"><p>One of eight outputs to reset through 4051 mux</p></li>
-<li class="fragment"><p>Three digital lines into 4051 pick &quot;note&quot;</p></li>
-<li class="fragment"><p>My twist: add some octaves with a 4040,<br> drive with SR</p></li>
+<li class="fragment">A lot like the 4069, but...</li>
+<li class="fragment">... with hysteresis</li>
+<li class="fragment">Separate high and low thresholds create deadband</li>
 </ul>
-</section><section id="melody-generator-1" class="slide level2">
-<h2>Melody Generator ++</h2>
+</section><section id="relaxation-oscillator" class="slide level2">
+<h2>Relaxation Oscillator</h2>
 <figure>
-<img src="images/melody_generator_plus_plussch_779.png" height="350" />
+<img src="images/40106_just_osc1.png" height="500" />
 </figure>
-</section><section id="melody-generator-2" class="slide level2">
-<h2>Melody Generator ++</h2>
+</section><section id="action" class="slide level2">
+<h2>40106 Action</h2>
 <ul>
-<li class="fragment"><p>Control pitch / octave through<br> paired clock and data lines</p></li>
-<li class="fragment"><p>Inject sequence into SR, loop it</p></li>
-<li class="fragment"><p>Feed clock / data with detuned oscillators</p></li>
-<li class="fragment"><p>Tweak until &quot;just right&quot;</p></li>
+<li class="fragment">The hysteresis keeps the oscillator oscillating</li>
+<li class="fragment">Imagine the capacitor starts out uncharged</li>
+<li class="fragment">With input low, output goes high</li>
+<li class="fragment">Charges capacitor up through resistor</li>
+<li class="fragment">When cap voltage hits high, output goes low</li>
+<li class="fragment">Low output drains cap through resistor...</li>
 </ul>
-</section><section id="whats-next" class="slide level2">
+</section><section id="voltages" class="slide level2">
+<h2>Voltages</h2>
+<figure>
+<img src="images/triangle_square.png" height="500" />
+</figure>
+</section><section id="hook-it-up" class="slide level2">
+<h2>Hook it up</h2>
+<ul>
+<li class="fragment">Power rails</li>
+<li class="fragment">Capacitor on input to ground</li>
+<li class="fragment">Potentiometer between input/output</li>
+<li class="fragment">Output to the amplifier</li>
+</ul>
+<figure>
+<img src="images/40106_just_osc1.png" height="200" />
+</figure>
+</section><section id="the-diode-trick" class="slide level2">
+<h2>The Diode Trick</h2>
+<ul>
+<li class="fragment">OK, that gets old fast</li>
+<li class="fragment">How to trigger this thing?<br />
+</li>
+<li class="fragment">Brutal approach: plug and unplug the power</li>
+<li class="fragment">Put a pushbutton inline with the amplifier</li>
+<li class="fragment">More Useful: stall out the oscillator with a diode</li>
+</ul>
+</section><section id="sync-oscillators" class="slide level2">
+<h2>Sync Oscillators</h2>
+<ul>
+<li class="fragment">Build up another oscillator real quick</li>
+<li class="fragment">Higher frequency: 0.01 uF (103) cap</li>
+<li class="fragment">Connect output of the first into its input via diode</li>
+<li class="fragment">Move amplifier input to the higher-pitch oscillator</li>
+</ul>
+</section><section id="sync-oscillator" class="slide level2">
+<h2>Sync Oscillator</h2>
+<figure>
+<img src="images/40106_sync_osc.png" height="500" />
+</figure>
+</section><section id="sync-oscillator-1" class="slide level2">
+<h2>Sync Oscillator</h2>
+<figure>
+<img src="images/diode_montage.png" height="500" />
+</figure>
+</section></section>
+<section><section id="from-pitches-to-beats" class="titleslide slide level1"><h1>From Pitches to Beats</h1></section><section id="binary-counter" class="slide level2">
+<h2>4040 Binary Counter</h2>
+<figure>
+<img src="images/4040_diagram.png" height="400" />
+</figure>
+</section><section id="binary-counter-1" class="slide level2">
+<h2>4040 Binary Counter</h2>
+<figure>
+<img src="images/4040_waveform.png" height="400" />
+</figure>
+</section><section id="hookup" class="slide level2">
+<h2>Hookup</h2>
+<ul>
+<li class="fragment">Power up!</li>
+<li class="fragment">Take the sync oscillator output, connect to 4040 clock</li>
+<li class="fragment">Hook up random outputs of the 4040 to amplifier</li>
+<li class="fragment">Play &quot;find the octaves&quot;</li>
+<li class="fragment">(Why couldn't they put the outputs in order?)</li>
+</ul>
+</section><section id="variation" class="slide level2">
+<h2>Variation</h2>
+<ul>
+<li class="fragment">The slow divisions are very slow</li>
+<li class="fragment">Use one or two like the sync oscillator</li>
+</ul>
+</section><section id="distraction" class="slide level2">
+<h2>Distraction</h2>
+<ul>
+<li class="fragment">Stacking and mixing octaves sounds great</li>
+<li class="fragment">Check out the Logic Noise article on the 4040</li>
+</ul>
+</section></section>
+<section><section id="digital-pitches" class="titleslide slide level1"><h1>Digital Pitches</h1></section><section id="divide-by-n" class="slide level2">
+<h2>Divide-by-N</h2>
+<ul>
+<li class="fragment">Dividing by 2 gives us octaves</li>
+<li class="fragment">Other notes?</li>
+<li class="fragment">Divide by other factors</li>
+</ul>
+</section><section id="counter" class="slide level2">
+<h2>4017 Counter</h2>
+<figure>
+<img src="images/4017_pattern.png" height="400" />
+</figure>
+</section><section id="hookup-1" class="slide level2">
+<h2>Hookup</h2>
+<ul>
+<li class="fragment">Power (yawn)</li>
+<li class="fragment">High-pitch oscillator into 4017 clock</li>
+<li class="fragment">Inhibit line high</li>
+<li class="fragment">Amplifier to Q0</li>
+<li class="fragment">Different outputs Q1-Q9 to reset line</li>
+</ul>
+</section></section>
+<section><section id="analog-switches" class="titleslide slide level1"><h1>Analog Switches</h1></section><section id="multiplexer" class="slide level2">
+<h2>4051 Multiplexer</h2>
+<ul>
+<li class="fragment">4051 is an 8-way switch</li>
+<li class="fragment">Binary input on A, B, C</li>
+<li class="fragment">Connects X0-X7 to Common</li>
+<li class="fragment">Bipolar: VEE can be negative, VSS is logic GND</li>
+<li class="fragment">Not hi-fi, but can switch 8 audio sources</li>
+</ul>
+</section><section id="simplest-hookup" class="slide level2">
+<h2>Simplest Hookup</h2>
+<ul>
+<li class="fragment">VCC to power</li>
+<li class="fragment">Inhibit, VEE, and VSS all to GND</li>
+<li class="fragment">A, B to GND</li>
+<li class="fragment">C directs input between common and X0, X1</li>
+</ul>
+</section><section id="our-goal-melody-generator" class="slide level2">
+<h2>Our Goal: Melody Generator</h2>
+<ul>
+<li class="fragment">High freq oscillator back to 4017 counter for pitches</li>
+<li class="fragment">Select among reset pulses through 4051</li>
+<li class="fragment">But need to count to 8</li>
+<li class="fragment">Low-freq oscillator into 4040</li>
+<li class="fragment">4040 outputs into 4017's A,B,C</li>
+</ul>
+</section><section id="the-melody-generator" class="slide level2">
+<h2>The Melody Generator</h2>
+<figure>
+<img src="images/melody_gen_schem.png" height="500" />
+</figure>
+</section></section>
+<section><section id="extra-credit-looper" class="titleslide slide level1"><h1>Extra Credit: Looper</h1></section><section id="shift-register" class="slide level2">
+<h2>Shift Register</h2>
+<ul>
+<li class="fragment"><p>Bucket Brigade / Hot Potato</p></li>
+<li class="fragment"><p>Inputs: Data, Clock, Strobe, Enable</p></li>
+<li class="fragment"><p>Outputs: Q1-Q8, &quot;Qs&quot; overflow</p></li>
+<li class="fragment"><p>Close on itself, loops around</p></li>
+</ul>
+</section><section id="block-diagram" class="slide level2">
+<h2>4094 Block Diagram</h2>
+<figure>
+<img src="images/4094_block_diagram.png" height="500" />
+</figure>
+</section><section id="loop-it" class="slide level2">
+<h2>Loop It!</h2>
+</section></section>
+<section><section id="wrapup" class="titleslide slide level1"><h1>Wrapup</h1></section><section id="whats-next" class="slide level2">
 <h2>What's Next?</h2>
 <ul>
 <li class="fragment"><p>Tremendous room for playing around</p></li>
 <li class="fragment"><p>Incorporate microcontroller, FPGA</p></li>
+<li class="fragment"><p>Hack this into the badge</p></li>
 <li class="fragment"><p>Build standalone instruments</p></li>
-<li class="fragment"><p>Priority encoders, complex logic</p></li>
-<li class="fragment"><p>Turn away from &quot;music&quot;, <br>embrace noise.</p></li>
 </ul>
-</section></section>
-<section><section id="the-end" class="titleslide slide level1"><h1>The End</h1></section><section id="fittingly-offbeat-references" class="slide level2">
-<h2>Fittingly Offbeat References</h2>
+</section><section id="references" class="slide level2">
+<h2>References</h2>
 <ul>
 <li class="fragment"><p><a href="http://moosack.net/stang/sculpts.html">Stanley Lunetta</a></p></li>
 <li class="fragment"><p><a href="https://davidtudor.org/Electronics/electronics.html">David Tudor</a></p></li>
