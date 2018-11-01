@@ -170,7 +170,7 @@
 <h2>Hookup</h2>
 <ul>
 <li class="fragment">Power up!</li>
-<li class="fragment">Take the sync oscillator output, connect to 4040 clock</li>
+<li class="fragment">Take the sync oscillator output, <br>connect to 4040 clock</li>
 <li class="fragment">Hook up random outputs of the 4040 to amplifier</li>
 <li class="fragment">Play &quot;find the octaves&quot;</li>
 <li class="fragment">(Why couldn't they put the outputs in order?)</li>
@@ -186,6 +186,7 @@
 <ul>
 <li class="fragment">Stacking and mixing octaves sounds great</li>
 <li class="fragment">Check out the Logic Noise article on the 4040</li>
+<li class="fragment">To do this right, need to modify amplifier</li>
 </ul>
 </section></section>
 <section><section id="digital-pitches" class="titleslide slide level1"><h1>Digital Pitches</h1></section><section id="divide-by-n" class="slide level2">
@@ -204,10 +205,17 @@
 <h2>Hookup</h2>
 <ul>
 <li class="fragment">Power (yawn)</li>
-<li class="fragment">High-pitch oscillator into 4017 clock</li>
 <li class="fragment">Inhibit line high</li>
+<li class="fragment">High-pitch oscillator into 4017 clock</li>
 <li class="fragment">Amplifier to Q0</li>
 <li class="fragment">Different outputs Q1-Q9 to reset line</li>
+</ul>
+</section><section id="variation-1" class="slide level2">
+<h2>Variation</h2>
+<ul>
+<li class="fragment">Diode trick lets you <br>use multiple pulses per cycle</li>
+<li class="fragment">Use the count outs of 4017 as clock pulses</li>
+<li class="fragment">Make uneven clocks or funky rhythms</li>
 </ul>
 </section></section>
 <section><section id="analog-switches" class="titleslide slide level1"><h1>Analog Switches</h1></section><section id="multiplexer" class="slide level2">
@@ -245,10 +253,10 @@
 <section><section id="extra-credit-looper" class="titleslide slide level1"><h1>Extra Credit: Looper</h1></section><section id="shift-register" class="slide level2">
 <h2>Shift Register</h2>
 <ul>
-<li class="fragment"><p>Bucket Brigade / Hot Potato</p></li>
-<li class="fragment"><p>Inputs: Data, Clock, Strobe, Enable</p></li>
-<li class="fragment"><p>Outputs: Q1-Q8, &quot;Qs&quot; overflow</p></li>
-<li class="fragment"><p>Close on itself, loops around</p></li>
+<li class="fragment">Bucket Brigade / Hot Potato</li>
+<li class="fragment">Inputs: Data, Clock, Strobe, Enable</li>
+<li class="fragment">Outputs: Q1-Q8, &quot;Qs&quot; overflow</li>
+<li class="fragment">Close on itself, loops around</li>
 </ul>
 </section><section id="block-diagram" class="slide level2">
 <h2>4094 Block Diagram</h2>
@@ -257,6 +265,21 @@
 </figure>
 </section><section id="loop-it" class="slide level2">
 <h2>Loop It!</h2>
+<ul>
+<li class="fragment">Power</li>
+<li class="fragment">Output enable high</li>
+<li class="fragment">Clock <em>and</em> strobe to slow clock</li>
+<li class="fragment">Resistor from Qs to data</li>
+<li class="fragment">Pick off three stages into 4051</li>
+</ul>
+</section><section id="run-it" class="slide level2">
+<h2>Run It</h2>
+<ul>
+<li class="fragment">As is, it will circulate zeros</li>
+<li class="fragment">Override data line, pulling to VCC or GND</li>
+<li class="fragment">Connecting pushbuttons high/low is great</li>
+<li class="fragment">Pro tip: slow clock down entering patterns</li>
+</ul>
 </section></section>
 <section><section id="wrapup" class="titleslide slide level1"><h1>Wrapup</h1></section><section id="whats-next" class="slide level2">
 <h2>What's Next?</h2>

@@ -132,7 +132,7 @@
 ## Hookup
 
 - Power up!
-- Take the sync oscillator output, connect to 4040 clock
+- Take the sync oscillator output, <br>connect to 4040 clock
 - Hook up random outputs of the 4040 to amplifier
 - Play "find the octaves"
 - (Why couldn't they put the outputs in order?)
@@ -146,6 +146,7 @@
 
 - Stacking and mixing octaves sounds great
 - Check out the Logic Noise article on the 4040 
+- To do this right, need to modify amplifier
 
 # Digital Pitches
 
@@ -162,10 +163,16 @@
 ## Hookup
 
 - Power (yawn)
-- High-pitch oscillator into 4017 clock
 - Inhibit line high
+- High-pitch oscillator into 4017 clock
 - Amplifier to Q0
 - Different outputs Q1-Q9 to reset line
+
+## Variation
+
+- Diode trick lets you <br>use multiple pulses per cycle
+- Use the count outs of 4017 as clock pulses
+- Make uneven clocks or funky rhythms
 
 # Analog Switches
 
@@ -202,11 +209,8 @@
 ## Shift Register
 
 - Bucket Brigade / Hot Potato
-
 - Inputs: Data, Clock, Strobe, Enable
-
 - Outputs: Q1-Q8, "Qs" overflow
-
 - Close on itself, loops around
 
 ## 4094 Block Diagram
@@ -214,16 +218,20 @@
 ![](images/4094_block_diagram.png){height=500px}
 
 
-
 ## Loop It!
 
+- Power
+- Output enable high
+- Clock _and_ strobe to slow clock 
+- Resistor from Qs to data
+- Pick off three stages into 4051
 
+## Run It
 
-
-
-
-
-
+- As is, it will circulate zeros
+- Override data line, pulling to VCC or GND
+- Connecting pushbuttons high/low is great
+- Pro tip: slow clock down entering patterns
 
 
 # Wrapup
