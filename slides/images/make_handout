@@ -1,0 +1,6 @@
+combinePhotos 4069ub_pinout.png 40106_pinout.png 4040_pinout.png
+mv foo.png top.png
+combinePhotos 4017_pinout.png 4051_pinout.png 4094_pinout_crop.png
+mv foo.png bottom.png 
+combinePhotos-vertically top.png bottom.png
+lpr -#17 -o landscape -o fit-to-page -o media=A4 foo.png
