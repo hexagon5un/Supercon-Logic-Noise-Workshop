@@ -80,7 +80,6 @@
 <li class="fragment">Pin 7 (Output of Inverter C) to capacitor</li>
 <li class="fragment">Capacitor to one leg of speaker</li>
 <li class="fragment">Other leg of speaker to ground</li>
-<li class="fragment">NEEDS DIAGRAM</li>
 </ul>
 </section><section id="test-it-out" class="slide level2">
 <h2>Test it out</h2>
@@ -136,6 +135,7 @@
 <li class="fragment">Brutal approach: plug and unplug the power</li>
 <li class="fragment">Put a pushbutton inline with the amplifier</li>
 <li class="fragment">More Useful: stall out the oscillator with a diode</li>
+<li class="fragment">Depending on polarity of diode, <br>high or low signal blocks blocks oscillation</li>
 </ul>
 </section><section id="sync-oscillators" class="slide level2">
 <h2>Sync Oscillators</h2>
@@ -179,7 +179,7 @@
 <h2>Variation</h2>
 <ul>
 <li class="fragment">The slow divisions are very slow</li>
-<li class="fragment">Use one or two like the sync oscillator</li>
+<li class="fragment">Connect one to an oscillator with a diode <br>like the sync oscillator</li>
 </ul>
 </section><section id="distraction" class="slide level2">
 <h2>Distraction</h2>
@@ -243,6 +243,13 @@
 <li class="fragment">But need to count to 8</li>
 <li class="fragment">Low-freq oscillator into 4040</li>
 <li class="fragment">4040 outputs into 4017's A,B,C</li>
+</ul>
+</section><section id="build-it" class="slide level2">
+<h2>Build it!</h2>
+<ul>
+<li class="fragment">Connect up the rest of switches to 4017 stages</li>
+<li class="fragment">Drive A, B, and C all from the 4040</li>
+<li class="fragment">Experiment with the ordering of bits and<br>which switch inputs to which 4017 outs</li>
 </ul>
 </section><section id="the-melody-generator" class="slide level2">
 <h2>The Melody Generator</h2>

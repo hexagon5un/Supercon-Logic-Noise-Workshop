@@ -53,7 +53,6 @@
 - Pin 7 (Output of Inverter C) to capacitor
 - Capacitor to one leg of speaker
 - Other leg of speaker to ground
-- NEEDS DIAGRAM
 
 
 ## Test it out
@@ -102,6 +101,7 @@
 - Brutal approach: plug and unplug the power
 - Put a pushbutton inline with the amplifier
 - More Useful: stall out the oscillator with a diode
+- Depending on polarity of diode, <br>high or low signal blocks blocks oscillation
 
 ## Sync Oscillators
 
@@ -140,7 +140,7 @@
 ## Variation 
 
 - The slow divisions are very slow
-- Use one or two like the sync oscillator
+- Connect one to an oscillator with a diode <br>like the sync oscillator
 
 ## Distraction 
 
@@ -198,6 +198,12 @@
 - But need to count to 8
 - Low-freq oscillator into 4040
 - 4040 outputs into 4017's A,B,C
+
+## Build it!
+
+- Connect up the rest of switches to 4017 stages
+- Drive A, B, and C all from the 4040
+- Experiment with the ordering of bits and<br>which switch inputs to which 4017 outs
 
 ## The Melody Generator
 
